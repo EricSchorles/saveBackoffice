@@ -1,0 +1,97 @@
+query ProductVariantList($options: ProductVariantListOptions!) {
+  productVariants(options: $options) {
+    items {
+      ...ProductVariantListQueryProductVariantFragment
+      __typename
+    }
+    totalItems
+    __typename
+  }
+}
+
+fragment Asset on Asset {
+  id
+  createdAt
+  updatedAt
+  name
+  fileSize
+  mimeType
+  type
+  preview
+  source
+  width
+  height
+  focalPoint {
+    x
+    y
+    __typename
+  }
+  __typename
+}
+
+fragment ProductVariantListQueryProductVariantFragment on ProductVariant {
+  id
+  createdAt
+  updatedAt
+  productId
+  enabled
+  languageCode
+  name
+  price
+  currencyCode
+  priceWithTax
+  trackInventory
+  outOfStockThreshold
+  stockLevels {
+    id
+    createdAt
+    updatedAt
+    stockLocationId
+    stockOnHand
+    stockAllocated
+    stockLocation {
+      id
+      createdAt
+      updatedAt
+      name
+      __typename
+    }
+    __typename
+  }
+  useGlobalOutOfStockThreshold
+  sku
+  featuredAsset {
+    ...Asset
+    __typename
+  }
+  __typename
+}
+
+mutation CreateVariation($input: [CreateProductVariantInput!]!) {
+  createProductVariants(input: $input) {
+    id
+  }
+}
+
+mutation UpdateProductVariants($input: [UpdateProductVariantInput!]!) {
+  updateProductVariants(input: $input) {
+    id
+  }
+}
+
+mutation CreateProductVariants($input: [CreateProductVariantInput!]!) {
+  createProductVariants(input: $input) {
+    id
+  }
+}
+
+query ProductVariantListQuery($options: ProductVariantListOptions!) {
+  productVariants(options: $options) {
+    items {
+      ...ProductVariantListQueryProductVariantFragment
+      __typename
+    }
+    totalItems
+    __typename
+  }
+}

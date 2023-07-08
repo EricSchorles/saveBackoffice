@@ -1,0 +1,38 @@
+query GetOrderList($options: OrderListOptions) {
+    orders(options: $options) {
+        items {
+            ...Order
+            __typename
+        }
+        totalItems
+        __typename
+    }
+}
+
+fragment Order on Order {
+    id
+    createdAt
+    updatedAt
+    type
+    orderPlacedAt
+    code
+    state
+    nextStates
+    total
+    totalWithTax
+    currencyCode
+    customer {
+        id
+        firstName
+        lastName
+        __typename
+    }
+    shippingLines {
+        shippingMethod {
+            name
+            __typename
+        }
+        __typename
+    }
+    __typename
+}

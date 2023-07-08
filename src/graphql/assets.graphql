@@ -1,0 +1,65 @@
+query AssetList($options: AssetListOptions) {
+    assets(options: $options) {
+        items {
+            id
+            name
+            preview
+        }
+        totalItems
+    }
+}
+
+mutation CreateAssets($input: [CreateAssetInput!]!) {
+    createAssets(input: $input) {
+        ... on Asset {
+            id
+        }
+    }
+}
+
+mutation DeleteAssets($input: DeleteAssetsInput!) {
+    deleteAssets(input: $input) {
+        result
+    }
+}
+
+query GetAssetList($options: AssetListOptions) {
+    assets(options: $options) {
+        items {
+            ...Asset
+            tags {
+                ...Tag
+                __typename
+            }
+            __typename
+        }
+        totalItems
+        __typename
+    }
+}
+
+fragment Asset on Asset {
+    id
+    createdAt
+    updatedAt
+    name
+    fileSize
+    mimeType
+    type
+    preview
+    source
+    width
+    height
+    focalPoint {
+        x
+        y
+        __typename
+    }
+    __typename
+}
+
+fragment Tag on Tag {
+    id
+    value
+    __typename
+}

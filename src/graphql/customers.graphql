@@ -1,0 +1,25 @@
+fragment CustomerList on CustomerList {
+		    items{
+          id
+          firstName
+          lastName
+          emailAddress
+					phoneNumber
+          customFields{
+            avatar{
+              id
+              name
+              source
+              preview
+            }
+          }
+          title
+        }
+        totalItems
+  }
+query GetCustomers ($options: CustomerListOptions){
+  customers(options:$options){
+    ...CustomerList
+    __typename
+  }
+}

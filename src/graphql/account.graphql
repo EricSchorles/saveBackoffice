@@ -1,0 +1,21 @@
+mutation SignIn($username: String!, $password: String!, $rememberMe: Boolean) {
+    login(username: $username, password: $password, rememberMe: $rememberMe) {
+        ... on CurrentUser {
+            __typename
+            id
+            identifier
+        }
+
+        ... on InvalidCredentialsError {
+            __typename
+            errorCode
+            message
+        }
+
+        ... on ErrorResult {
+            __typename
+            errorCode
+            message
+        }
+    }
+}

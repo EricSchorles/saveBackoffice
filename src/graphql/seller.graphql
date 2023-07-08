@@ -1,0 +1,25 @@
+mutation registerShop($input: RegisterSellerInput!) {
+    registerShop(input: $input) {
+        __typename
+
+        ... on EmailAddressConflictError {
+            __typename
+            message
+        }
+
+        ... on Administrator {
+            id
+            shopName
+        }
+
+        ... on ShopNameConflictError {
+            __typename
+            errorCode
+            message
+        }
+    }
+}
+
+query checkShopNameAvailability($shopName: String!) {
+    checkShopNameAvailability(shopName: $shopName)
+}
